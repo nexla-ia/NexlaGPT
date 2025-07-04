@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon_trimmed_transparent_customcolor (1).png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Nexla GPT - AI Assistant with N8N Integration</title>
+    <meta name="description" content="Nexla GPT - Assistente de IA avançado com integração N8N para automação de workflows e processos." />
+    <meta name="keywords" content="AI, GPT, N8N, automação, workflow, chatbot, assistente virtual" />
+    <meta name="author" content="Nexla" />
+    
+    <!-- iOS Safari specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="NexlaGPT" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nexla-gpt.com/" />
+    <meta property="og:title" content="Nexla GPT - AI Assistant with N8N Integration" />
+    <meta property="og:description" content="Assistente de IA avançado com integração N8N para automação de workflows e processos." />
+    <meta property="og:image" content="/icon_trimmed_transparent_customcolor (1).png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://nexla-gpt.com/" />
+    <meta property="twitter:title" content="Nexla GPT - AI Assistant with N8N Integration" />
+    <meta property="twitter:description" content="Assistente de IA avançado com integração N8N para automação de workflows e processos." />
+    <meta property="twitter:image" content="/icon_trimmed_transparent_customcolor (1).png" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/icon_trimmed_transparent_customcolor (1).png" as="image" />
+    
+    <style>
+      /* CRÍTICO: Corrigir scroll no iOS e mobile - VERSÃO CORRIGIDA */
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        /* CORRIGIDO: Permitir scroll vertical normal */
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+        min-height: 100vh;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        /* CORRIGIDO: Permitir scroll vertical normal */
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+        min-height: 100vh;
+      }
+      
+      #root {
+        width: 100%;
+        min-height: 100vh;
+        /* CORRIGIDO: Permitir scroll vertical normal */
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+        height: auto;
+      }
+      
+      /* Prevent zoom on input focus */
+      input, textarea, select {
+        font-size: 16px !important;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+      }
+
+      /* iOS Safari específico - CORRIGIDO */
+      @supports (-webkit-touch-callout: none) {
+        html {
+          -webkit-overflow-scrolling: touch;
+          overflow-y: auto;
+          overflow-x: hidden;
+          position: relative;
+          height: 100%;
+          min-height: 100vh;
+        }
+
+        body {
+          -webkit-overflow-scrolling: touch;
+          overflow-y: auto;
+          overflow-x: hidden;
+          position: relative;
+          height: 100%;
+          min-height: 100vh;
+        }
+
+        #root {
+          -webkit-overflow-scrolling: touch;
+          overflow-y: auto;
+          overflow-x: hidden;
+          height: auto;
+          min-height: 100vh;
+        }
+
+        /* Permitir scroll em todos os containers */
+        * {
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+
+      /* Mobile específico - CORRIGIDO */
+      @media (max-width: 768px) {
+        html, body {
+          overflow-y: auto;
+          overflow-x: hidden;
+          height: 100%;
+          min-height: 100vh;
+          position: relative;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        #root {
+          overflow-y: auto;
+          overflow-x: hidden;
+          height: auto;
+          min-height: 100vh;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        /* Garantir que todos os elementos podem fazer scroll */
+        .mobile-scroll,
+        .chat-scroll,
+        .content-scroll {
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

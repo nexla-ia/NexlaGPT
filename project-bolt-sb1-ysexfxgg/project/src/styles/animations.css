@@ -1,0 +1,375 @@
+/* Animações otimizadas para mobile e smooth scroll */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 15px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -15px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-15px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(15px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Animação de gradiente fluido para fundo */
+@keyframes gradient-xy {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Animação de flutuação para elementos de fundo */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(10px) rotate(-1deg);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(15px) rotate(-1deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+/* Animação de pulso suave */
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* NOVO: Animação de fade in simples */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* NOVO: Animação de slide horizontal para carrossel */
+@keyframes slideInHorizontal {
+  from {
+    opacity: 0;
+    transform: translate3d(30px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Animation utility classes - versões otimizadas para mobile */
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-horizontal {
+  animation: slideInHorizontal 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+/* Animações de fundo fluidas */
+.animate-gradient-xy {
+  background-size: 400% 400%;
+  animation: gradient-xy 15s ease infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+/* Stagger animation delays - otimizados para mobile */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+.animate-delay-600 { animation-delay: 0.6s; }
+.animate-delay-700 { animation-delay: 0.7s; }
+.animate-delay-800 { animation-delay: 0.8s; }
+
+/* Initial state for scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Performance optimizations */
+.will-animate {
+  will-change: opacity, transform;
+}
+
+.animation-complete {
+  will-change: auto;
+}
+
+/* Smooth scroll behavior */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus states for accessibility */
+.animate-on-scroll:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* NOVO: Otimizações específicas para carrossel mobile */
+.carousel-item {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.carousel-container {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+/* NOVO: Smooth transitions para elementos interativos */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-transition-fast {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduzir animações para motion-sensitive users */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in-down,
+  .animate-fade-in-left,
+  .animate-fade-in-right,
+  .animate-scale-in,
+  .animate-slide-in-up,
+  .animate-fadeIn,
+  .animate-slide-horizontal,
+  .animate-gradient-xy,
+  .animate-float,
+  .animate-float-delayed,
+  .animate-pulse-soft {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .smooth-transition,
+  .smooth-transition-fast {
+    transition: none;
+  }
+}
+
+/* Otimizações para mobile - animações mais rápidas */
+@media (max-width: 768px) {
+  .animate-fade-in-up,
+  .animate-fade-in-down,
+  .animate-fade-in-left,
+  .animate-fade-in-right,
+  .animate-scale-in,
+  .animate-slide-in-up,
+  .animate-fadeIn,
+  .animate-slide-horizontal {
+    animation-duration: 0.3s;
+  }
+  
+  .animate-on-scroll {
+    transition-duration: 0.3s;
+  }
+
+  .animate-gradient-xy {
+    animation-duration: 20s;
+  }
+
+  .animate-float,
+  .animate-float-delayed {
+    animation-duration: 8s;
+  }
+
+  .smooth-transition {
+    transition-duration: 0.2s;
+  }
+
+  .smooth-transition-fast {
+    transition-duration: 0.15s;
+  }
+}
+
+/* NOVO: Otimizações específicas para iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  .carousel-item {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .animate-on-scroll {
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+
+  .animate-on-scroll.is-visible {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+/* NOVO: Animações para elementos de header fixo */
+.header-scroll-animation {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* NOVO: Animações para botões touch-friendly */
+.touch-button-animation {
+  transition: transform 0.1s ease-out, box-shadow 0.2s ease-out;
+}
+
+.touch-button-animation:active {
+  transform: scale(0.98);
+}
+
+.touch-button-animation:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* NOVO: Animações para overlays mobile */
+.mobile-overlay-enter {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.mobile-overlay-exit {
+  animation: fadeIn 0.25s ease-out reverse forwards;
+}

@@ -1,0 +1,588 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import animation styles */
+@import './styles/animations.css';
+@import './styles/hamburger-menu.css';
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #ffffff;
+    /* CORRIGIDO: Permitir scroll normal */
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #ffffff;
+    /* CORRIGIDO: Permitir scroll normal */
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* iOS Safari specific fixes - CORRIGIDOS */
+  @supports (-webkit-touch-callout: none) {
+    html, body {
+      -webkit-text-size-adjust: 100%;
+      -webkit-overflow-scrolling: touch;
+      /* CORRIGIDO: Remover position fixed que bloqueia scroll */
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    input, textarea {
+      -webkit-appearance: none;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+    }
+    
+    * {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    button, 
+    [role="button"],
+    .touch-target {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      cursor: pointer;
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Prevent zoom on iOS Safari when focusing inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    /* CORRIGIDO: Permitir scroll normal */
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* ENHANCED SCROLLBAR STYLES */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-track-transparent {
+    scrollbar-color: transparent transparent;
+  }
+
+  .scrollbar-thumb-gray-300 {
+    scrollbar-color: #d1d5db transparent;
+  }
+
+  .dark .scrollbar-thumb-gray-600 {
+    scrollbar-color: #4b5563 transparent;
+  }
+
+  /* Webkit scrollbar styles for better cross-browser support */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 3px;
+    transition: background 0.2s ease;
+  }
+
+  .scrollbar-thin:hover::-webkit-scrollbar-thumb {
+    background: rgba(209, 213, 219, 0.5);
+  }
+
+  .dark .scrollbar-thin:hover::-webkit-scrollbar-thumb {
+    background: rgba(75, 85, 99, 0.5);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(209, 213, 219, 0.8);
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(75, 85, 99, 0.8);
+  }
+
+  /* CHAT INTERFACE SCROLL FIXES - CORRIGIDOS */
+  .chat-container {
+    width: 100%;
+    height: 100vh;
+    /* CORRIGIDO: Permitir scroll normal */
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .messages-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    position: relative;
+    /* Custom scrollbar styling for chat messages */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(34, 211, 238, 0.4) rgba(55, 65, 81, 0.1);
+  }
+
+  .navigation-sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chat-history-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Desktop scrollbar styling for chat messages */
+  @media (min-width: 1024px) {
+    .messages-container::-webkit-scrollbar,
+    .chat-history-list::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .messages-container::-webkit-scrollbar-track,
+    .chat-history-list::-webkit-scrollbar-track {
+      background: rgba(55, 65, 81, 0.1);
+      border-radius: 4px;
+    }
+
+    .messages-container::-webkit-scrollbar-thumb,
+    .chat-history-list::-webkit-scrollbar-thumb {
+      background: rgba(34, 211, 238, 0.4);
+      border-radius: 4px;
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .messages-container::-webkit-scrollbar-thumb:hover,
+    .chat-history-list::-webkit-scrollbar-thumb:hover {
+      background: rgba(34, 211, 238, 0.6);
+      border-color: rgba(34, 211, 238, 0.4);
+    }
+
+    .messages-container::-webkit-scrollbar-thumb:active,
+    .chat-history-list::-webkit-scrollbar-thumb:active {
+      background: rgba(34, 211, 238, 0.8);
+      border-color: rgba(34, 211, 238, 0.6);
+    }
+  }
+
+  /* PERFORMANCE OPTIMIZATIONS */
+  .scroll-optimized {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: scroll-position;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Safe area utilities for mobile */
+  .ios-safe-area {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  
+  .ios-safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .ios-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+  }
+
+  /* Touch-friendly button sizes */
+  .touch-button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px;
+    border-radius: 12px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Tablet-specific touch buttons */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .touch-button {
+      min-height: 48px;
+      min-width: 48px;
+      padding: 14px;
+    }
+  }
+
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #22d3ee, #3b82f6, #8b5cf6);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Hover effects - suavizados */
+  .hover-lift {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Backdrop blur */
+  .backdrop-blur-enhanced {
+    backdrop-filter: blur(24px) saturate(180%);
+    background: rgba(15, 23, 42, 0.8);
+  }
+
+  /* Touch manipulation utility */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Keyframes - suavizados */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar Global - Estilo ChatGPT */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+/* Scrollbar aparece apenas no hover */
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+*:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+*:hover::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Desktop scrollbar melhorado */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+  
+  *:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  *:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Focus states */
+.focus-ring:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: rgba(34, 211, 238, 0.5);
+  ring-offset: 2px;
+  ring-offset-color: #0f172a;
+}
+
+/* Button hover effects - suavizados */
+.btn-hover {
+  transition: all 0.2s ease-out;
+}
+
+.btn-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-hover:active {
+  transform: translateY(0);
+}
+
+/* Focus improvements for accessibility */
+.focus-visible:focus {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Better contrast for accessibility */
+@media (prefers-contrast: high) {
+  .high-contrast-text {
+    color: #ffffff;
+    background-color: #000000;
+  }
+
+  .high-contrast-border {
+    border-color: #ffffff;
+    border-width: 2px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .backdrop-blur-xl {
+    backdrop-filter: none;
+  }
+}
+
+/* Mobile-specific optimizations - CORRIGIDOS */
+@media (max-width: 767px) {
+  html, body {
+    /* CORRIGIDO: Permitir scroll normal no mobile */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-scroll {
+    scroll-padding-top: 1rem;
+    scroll-padding-bottom: 1rem;
+    overflow-y: auto;
+    height: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .touch-button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Garantir que o chat funciona no mobile */
+  .chat-scroll {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: auto;
+    max-height: none;
+  }
+}
+
+/* Tablet optimizations - CORRIGIDOS */
+@media (min-width: 768px) and (max-width: 1023px) {
+  html, body {
+    /* CORRIGIDO: Permitir scroll normal no tablet */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-scroll {
+    scroll-padding-top: 1.5rem;
+    scroll-padding-bottom: 1.5rem;
+  }
+
+  /* Tablet-specific touch improvements */
+  .touch-button {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 14px;
+  }
+
+  /* Tablet chat optimizations */
+  .chat-scroll {
+    scroll-padding-top: 2rem;
+    scroll-padding-bottom: 2rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .mobile-scroll {
+    scroll-padding-top: 2rem;
+    scroll-padding-bottom: 2rem;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1440px) {
+  .mobile-scroll {
+    scroll-padding-top: 2.5rem;
+    scroll-padding-bottom: 2.5rem;
+  }
+}
+
+/* Animações mais suaves */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+  
+  .animate-pulse {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-spin {
+    animation: spin 2s linear infinite;
+  }
+}
+
+/* Reduzir animações para usuários que preferem */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Otimizações específicas para iOS Safari - CORRIGIDAS */
+@supports (-webkit-touch-callout: none) {
+  /* CORRIGIDO: Permitir scroll normal */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Garantir que botões funcionem corretamente no iOS */
+  button, [role="button"] {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* iOS tablet specific fixes */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .tablet-ios-fix {
+      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
+    }
+  }
+}

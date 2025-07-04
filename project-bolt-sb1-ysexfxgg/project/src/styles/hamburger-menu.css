@@ -1,0 +1,361 @@
+/* Advanced Hamburger Menu Styles */
+
+/* Button animations and states */
+.hamburger-menu-button {
+  /* Ensure proper touch target size */
+  min-width: 48px;
+  min-height: 48px;
+  
+  /* Smooth transitions for all states */
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  
+  /* Optimize for touch */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+
+.hamburger-menu-button:hover {
+  transform: scale(1.05) translateZ(0);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.hamburger-menu-button:active {
+  transform: scale(0.98) translateZ(0);
+  transition-duration: 100ms;
+}
+
+.hamburger-menu-button:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+/* Sidebar animations and optimizations */
+.advanced-hamburger-sidebar {
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Overlay animations */
+.hamburger-menu-overlay {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar for sidebar */
+.advanced-hamburger-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.advanced-hamburger-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.advanced-hamburger-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.advanced-hamburger-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.8);
+}
+
+/* Chat item hover effects */
+.chat-item {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.chat-item:hover {
+  transform: translateX(2px) translateZ(0);
+}
+
+/* Category headers */
+.category-header {
+  position: sticky;
+  top: 0;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+/* Action buttons */
+.action-button {
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.action-button:hover {
+  transform: scale(1.05) translateZ(0);
+}
+
+.action-button:active {
+  transform: scale(0.95) translateZ(0);
+}
+
+/* Filter buttons */
+.filter-button {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.filter-button:hover::before {
+  left: 100%;
+}
+
+/* Dropdown menus */
+.dropdown-menu {
+  animation: dropdownFadeIn 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top right;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Selection states */
+.chat-selected {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(59, 130, 246, 0.1));
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.1);
+}
+
+.chat-multi-selected {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, rgba(75, 85, 99, 0.1) 25%, rgba(75, 85, 99, 0.2) 50%, rgba(75, 85, 99, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 320px) {
+  .advanced-hamburger-sidebar {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .hamburger-menu-button {
+    top: 12px;
+    left: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hamburger-menu-button {
+    display: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .hamburger-menu-button {
+    border: 2px solid currentColor;
+  }
+  
+  .advanced-hamburger-sidebar {
+    border-right: 2px solid currentColor;
+  }
+  
+  .chat-item {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .hamburger-menu-button,
+  .advanced-hamburger-sidebar,
+  .hamburger-menu-overlay,
+  .chat-item,
+  .action-button,
+  .filter-button {
+    transition: none;
+    animation: none;
+  }
+  
+  .hamburger-menu-button:hover,
+  .chat-item:hover,
+  .action-button:hover {
+    transform: none;
+  }
+  
+  .dropdown-menu {
+    animation: none;
+  }
+  
+  .loading-skeleton {
+    animation: none;
+    background: rgba(75, 85, 99, 0.2);
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .hamburger-menu-button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+  
+  .advanced-hamburger-sidebar {
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translateZ(0);
+  }
+  
+  /* Fix for iOS Safari viewport issues */
+  .advanced-hamburger-sidebar {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+}
+
+/* Print styles */
+@media print {
+  .hamburger-menu-button,
+  .advanced-hamburger-sidebar,
+  .hamburger-menu-overlay {
+    display: none !important;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .hamburger-menu-button {
+    background-color: rgba(31, 41, 55, 0.9);
+    border-color: rgba(75, 85, 99, 1);
+  }
+  
+  .advanced-hamburger-sidebar {
+    background-color: rgba(17, 24, 39, 0.95);
+    border-color: rgba(75, 85, 99, 0.5);
+  }
+}
+
+/* Touch feedback improvements */
+.hamburger-menu-button:active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
+  animation: ripple 0.3s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Ensure proper stacking context */
+.hamburger-menu-container {
+  position: relative;
+  z-index: 0;
+}
+
+/* Accessibility improvements */
+.hamburger-menu-button[aria-expanded="true"] {
+  background-color: rgba(31, 41, 55, 1);
+}
+
+/* Focus management */
+.focus-trap-active {
+  overflow: hidden;
+}
+
+/* Animation performance optimizations */
+.hamburger-menu-button,
+.advanced-hamburger-sidebar,
+.chat-item {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Smooth state transitions */
+.state-transition {
+  transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced visual feedback */
+.visual-feedback {
+  position: relative;
+  overflow: hidden;
+}
+
+.visual-feedback::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.visual-feedback:active::after {
+  width: 200px;
+  height: 200px;
+}
